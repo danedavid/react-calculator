@@ -17,6 +17,10 @@ class Calculator extends React.Component {
     this.updateDisplay = this.updateDisplay.bind(this);
   }
   updateDisplay(num) {
+    if( num === 'C' ) {
+      this.setState({ mainVal: 0, val1: null, op: null, status: 'val1' });
+      return;
+    }
     if( typeof num === "number" || num === '0' ) {
       this.setState({ mainVal: this.state.mainVal*10+(+num) });
     } else {

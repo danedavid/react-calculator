@@ -6,9 +6,9 @@ class Button extends React.Component {
   constructor(props) {
     super(props);
     this.displayStyle = {
-      width: "33.17%",
+      width: "calc(33.33% - 2px)",
       height: "60px",
-      margin: "1px",
+      margin: "0 1px",
       position: "relative"
     };
     this.labelStyle = {
@@ -17,6 +17,10 @@ class Button extends React.Component {
       top: "50%",
       transform: "translate(-50%,-50%)"
     };
+    if( this.props.dataStyle === 'clear' ) {
+      this.displayStyle.width = "calc(100% - 2px)";
+    }
+
     this.inputValue = this.inputValue.bind(this);
   }
   inputValue() {

@@ -8,11 +8,11 @@ class Display extends React.Component {
       input: this.props.mainVal
     };
     this.displayStyle = {
-      height: "100px",
+      height: "150px",
       width: "100%",
       backgroundColor: grey700,
       color: "#fff",
-      fontSize: "52px",
+      fontSize: "72px",
       fontFamily: "'Roboto', sans-serif",
       textAlign: "right"
     };

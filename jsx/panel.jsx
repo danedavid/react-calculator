@@ -17,11 +17,14 @@ class Panel extends React.Component {
     ['0','+','-','*','/','='].forEach( (elem) => {
       buttonsArray.push(<Button key={"key-" + elem} val={elem} updateDisplay={this.updateDisplay} />);
     } );
+
+    buttonsArray.push(<Button dataStyle="clear" key="key-C" val="C" updateDisplay={this.updateDisplay} />);
+
     return(
       <div>
         {buttonsArray}
       </div>
-    )
+    );
   }
 }
 
