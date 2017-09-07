@@ -13,6 +13,7 @@ class Display extends React.Component {
       backgroundColor: grey700,
       color: "#fff",
       fontSize: "52px",
+      fontFamily: "'Roboto', sans-serif",
       textAlign: "right"
     };
   }

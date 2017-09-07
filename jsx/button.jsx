@@ -6,10 +6,16 @@ class Button extends React.Component {
   constructor(props) {
     super(props);
     this.displayStyle = {
-      width: "33%",
-      height: "50px",
+      width: "33.17%",
+      height: "60px",
       margin: "1px",
-      fontSize: "24px"
+      position: "relative"
+    };
+    this.labelStyle = {
+      fontSize: "20px",
+      position: "absolute",
+      top: "50%",
+      transform: "translate(-50%,-50%)"
     };
     this.inputValue = this.inputValue.bind(this);
   }
@@ -22,6 +28,7 @@ class Button extends React.Component {
         labelColor={red50}
         backgroundColor={red400}
         style={this.displayStyle}
+        labelStyle={this.labelStyle}
         onClick={this.inputValue}/>
     );
   }
