@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import {red50, red400, orange900} from 'material-ui/styles/colors';
+import {red50, red400, green700, orange900, orange700} from 'material-ui/styles/colors';
 
 class Button extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Button extends React.Component {
       margin: "0 1px",
       position: "relative"
     };
+    this.backgroundColor = red400;
     this.labelStyle = {
       fontSize: "20px",
       position: "absolute",
@@ -19,6 +20,13 @@ class Button extends React.Component {
     };
     if( this.props.dataStyle === 'clear' ) {
       this.displayStyle.width = "calc(100% - 2px)";
+      this.backgroundColor = orange700;
+    } else if( this.props.dataStyle === 'op' ) {
+      if( this.props.val === '=' ) {
+        this.backgroundColor = green700;
+      } else {
+        this.backgroundColor = orange900;
+      }
     }
 
     this.inputValue = this.inputValue.bind(this);
@@ -30,7 +38,7 @@ class Button extends React.Component {
     return(
       <RaisedButton label={this.props.val}
         labelColor={red50}
-        backgroundColor={red400}
+        backgroundColor={this.backgroundColor}
         style={this.displayStyle}
         labelStyle={this.labelStyle}
         onClick={this.inputValue}/>

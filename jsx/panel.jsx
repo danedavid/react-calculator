@@ -11,11 +11,11 @@ class Panel extends React.Component {
     return this.props.updateDisplay(num);
   }
   render() {
-    let buttonsArray = [1,2,3,4,5,6,7,8,9].map( (elem) => (
+    let buttonsArray = [1,2,3,4,5,6,7,8,9,'0'].map( (elem) => (
       <Button key={"key-" + elem} val={elem} updateDisplay={this.updateDisplay} />
     ));
-    ['0','+','-','*','/','='].forEach( (elem) => {
-      buttonsArray.push(<Button key={"key-" + elem} val={elem} updateDisplay={this.updateDisplay} />);
+    ['+','-','*','/','='].forEach( (elem) => {
+      buttonsArray.push(<Button dataStyle="op" key={"key-" + elem} val={elem} updateDisplay={this.updateDisplay} />);
     } );
 
     buttonsArray.push(<Button dataStyle="clear" key="key-C" val="C" updateDisplay={this.updateDisplay} />);
