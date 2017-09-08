@@ -56,7 +56,10 @@ class Calculator extends React.Component {
             case '/': answer = this.state.val1 / currVal;
                       break;
           }
-          this.setState({ mainVal: answer, val1: null, op: null, history: this.state.history+currVal, status: 'result' });
+          this.setState({ mainVal: answer, val1: null, op: null, history: this.state.history, status: 'result' });
+          if( currVal == '0' ) {
+            this.setState({ history: this.state.history + currVal });
+          }
         }
       }
     }
