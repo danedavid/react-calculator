@@ -10,27 +10,38 @@ class Calculator extends React.Component {
       mainVal: 0,
       val1: null,
       op: null,
+      history: '',
       status: 'val1'
     };
-    // this.displayStyle = {
-    // };
     this.updateDisplay = this.updateDisplay.bind(this);
   }
   updateDisplay(num) {
     if( num === 'C' ) {
-      this.setState({ mainVal: 0, val1: null, op: null, status: 'val1' });
+      this.setState({ mainVal: 0, val1: null, op: null, history: '', status: 'val1' });
       return;
     }
     if( typeof num === "number" || num === '0' ) {
-      this.setState({ mainVal: this.state.mainVal*10+(+num) });
+      let prev = '';
+      if( this.state.status === "result" ) {
+        this.setState({ mainVal: +num, status: 'val1' });
+      } else {
+        this.setState({ mainVal: this.state.mainVal*10+(+num) });
+        prev += this.state.history;
+      }
+      if( num != 0 ) {
+        this.setState({ history: prev+num});
+      }
     } else {
       if( ['+','-','/','*'].indexOf(num) !== -1 ) {
         if( this.state.status === "val2" ) {
           alert("Evaluate before using next operation!");
           return;
         }
+        if( this.state.status === "result" ) {
+          return;
+        }
         let currVal = this.state.mainVal;
-        this.setState({ mainVal: 0, val1: currVal, op: num, status: 'val2' });
+        this.setState({ mainVal: 0, val1: currVal, op: num, history: currVal+num, status: 'val2' });
       } else {
         if( this.state.status === "val2" ) {
           let currVal = this.state.mainVal;
@@ -45,7 +56,7 @@ class Calculator extends React.Component {
             case '/': answer = this.state.val1 / currVal;
                       break;
           }
-          this.setState({ mainVal: answer, val1: null, op: null, status: 'val1' });
+          this.setState({ mainVal: answer, val1: null, op: null, history: this.state.history+currVal, status: 'result' });
         }
       }
     }
@@ -53,7 +64,7 @@ class Calculator extends React.Component {
   render() {
     return(
       <div style={this.displayStyle}>
-        <Display mainVal={this.state.mainVal}/>
+        <Display mainVal={this.state.mainVal} history={this.state.history}/>
         <Panel updateDisplay={this.updateDisplay}/>
       </div>
     )
